@@ -44,6 +44,7 @@ void *secure_malloc(size_t size, char* file, int line){
 void secure_free(void* pointer){
     if (pointer ==NULL) return;
     
+    //college linked list refernce
     Node **temp_head = &head;
 
     while (*temp_head)
