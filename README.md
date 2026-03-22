@@ -20,4 +20,7 @@
 Use GCC to compile all source files together:
 ```bash
 gcc main.c debug.c malloc.c -o mal && ./mal
-[secure_mallloc_vid.webm](https://github.com/user-attachments/assets/fc1c4d10-7f52-44f9-bc63-c29580d62d5a)
+
+
+[new_secure_malloc_vid.webm](https://github.com/user-attachments/assets/53c8c7b5-3225-4f86-ba40-897071ea2e89)
+
