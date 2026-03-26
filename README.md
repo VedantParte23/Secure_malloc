@@ -1,26 +1,34 @@
-# Sentinel Malloc: Secure Memory Forensics Tool
+# 🛡️ Sentinel Malloc: A Simple Memory Forensics Tool
 
-**Sentinel Malloc** is a small memory tracher and also it provies envirmonet repost by usig build in macros.
+Hey there! This is a project I built to help track down memory leaks and get a better look at the environment where my C code is running. It's essentially a wrapper for `malloc` and `free` that keeps a running log of everything happening under the hood.
 
-##  Features
-- **Allocation Tracking:** Records the size, memory address, file name, and line number of every `malloc`.
-- **Leak Detection:** Automatically generates a report of all unfreed memory at the end of execution.
-- **System Forensics:** Provides a detailed "Environment Report" showing the C standard, compiler type, and OS being used.
-- **Verbosity Control:** Supports command-line arguments to toggle debug information.
+---
 
-##  Project Structure
-- `main.c`: The entry point and user logic.
-- `malloc.c`: The core "Secure Malloc" implementation using Linked Lists.
-- `debug.c`: System-level environment checks and reporting logic.
+### 🚀 Quick Links (For Reviewers)
+* **The Binary:** [Download `mal` here](https://github.com/VedantParte23/Secure_malloc/releases/download/v1/mal)  
+  *(Use this link for the project submission—it points directly to the compiled executable in the GitHub Release to avoid 404 errors.)*
+* **The Demo:** [Watch the video walkthrough](https://github.com/user-attachments/assets/53c8c7b5-3225-4f86-ba40-897071ea2e89)
 
+---
 
-##  How to Run (Linux / Replit)
+## What does it do?
 
-### 1. Compilation
-Use GCC to compile all source files together:
+I wanted a way to see exactly where my memory was going without digging through massive logs. Here’s what it handles:
+
+* **No More Mystery Leaks:** Every time you call `malloc`, it records the exact file and line number. When the program ends, it tells you exactly what you forgot to `free`.
+* **System Forensics:** It uses C macros to "sniff out" your setup. It'll tell you if you're on Linux, Windows, or Mac, which compiler you're using (GCC, Clang, etc.), and even which C standard (like C11 or C23) is active.
+* **Easy Toggles:** I set it up so you can pass a `1` as an argument if you want the full "Environment Report," or leave it off if you just want the leak report.
+
+## The Setup
+
+* `main.c`: A sample program I wrote to show it in action. It deliberately "leaks" a bit of memory so you can see the tool catch it.
+* `malloc.c` / `malloc.h`: This is the heart of the project. It uses a Linked List to keep track of addresses and sizes.
+* `debug.c` / `debug.h`: All the logic for checking your OS and Compiler versions.
+
+## How to try it out
+
+### 1. Just run the binary (Linux)
+If you've downloaded the `mal` file from the link above, just do this in your terminal:
 ```bash
-gcc main.c debug.c malloc.c -o mal && ./mal
-
-
-[new_secure_malloc_vid.webm](https://github.com/user-attachments/assets/53c8c7b5-3225-4f86-ba40-897071ea2e89)
-
+chmod +x mal
+./mal 1
